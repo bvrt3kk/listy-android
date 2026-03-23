@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> jezykiArrayList;
     private ArrayAdapter<String> arrayAdapter;
     private ListView listView;
+    private EditText editTextJezyk;
+    private Button buttonDodaj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +52,18 @@ public class MainActivity extends AppCompatActivity {
                 arrayAdapter.notifyDataSetChanged();
             }
         });
+        editTextJezyk = findViewById(R.id.editTextJezyk);
+        buttonDodaj = findViewById(R.id.button);
+
+        buttonDodaj.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String jezyk = editTextJezyk.getText().toString();
+                        jezykiArrayList.add(jezyk);
+                        arrayAdapter.notifyDataSetChanged();
+                    }
+                }
+        );
     }
 }
